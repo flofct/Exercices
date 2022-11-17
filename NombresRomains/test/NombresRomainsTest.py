@@ -1,45 +1,32 @@
 import unittest
+
+import parameterized as parameterized
+
 import ConvertisseurNombresRomains
 
 
 class MyTestCase(unittest.TestCase):
-    def test_one(self):
-        nombre = 1
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('I', result)
-    def test_two(self):
-        nombre = 2
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('II', result)
-    def test_three(self):
-        nombre = 3
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('III', result)
-    def test_four(self):
+
+    @parameterized.parameterized.expand([[1], [2], [3]])
+    def test_1_2_3(self, n):
+        result = ConvertisseurNombresRomains.convertir(n)
+        attendu = 'I'*n
+        self.assertEqual(attendu, result)
+    def test_4(self):
         nombre = 4
         result = ConvertisseurNombresRomains.convertir(nombre)
         self.assertEqual('IV', result)
-    def test_five(self):
-        nombre = 5
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('V', result)
-    def test_six(self):
-        nombre = 6
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('VI', result)
-    def test_seven(self):
-        nombre = 7
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('VII', result)
-    def test_eight(self):
-        nombre = 8
-        result = ConvertisseurNombresRomains.convertir(nombre)
-        self.assertEqual('VIII', result)
-    def test_nine(self):
+
+    @parameterized.parameterized.expand([[5], [6], [7], [8]])
+    def test_5_6_7_8(self, n):
+        result = ConvertisseurNombresRomains.convertir(n)
+        attendu = 'V' + 'I' * (n - 5)
+        self.assertEqual(attendu, result)
+    def test_9(self):
         nombre = 9
         result = ConvertisseurNombresRomains.convertir(nombre)
         self.assertEqual('IX', result)
-    def test_ten(self):
+    def test_10(self):
         nombre = 10
         result = ConvertisseurNombresRomains.convertir(nombre)
         self.assertEqual('X', result)
